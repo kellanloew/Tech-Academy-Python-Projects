@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Products{% endblock %}
+
+{% block header %}Welcome to the Products Page!{% endblock %}
+
+{% block content %}
+    <div class="admin_panel">
+        <form name="productForm" method="POST" action="">
+            <div class="formObject">
+                {% csrf_token %}
+                <label for="menu_id">Select a product from list to edit:</label>
+                <select id="menu_id" name="menu" onChange="top.location.href=this.options[this.selectedIndex].value;">
+                    {% for i in products %}
+                        <option value="../{{ i.pk }}/details/">{{ i.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="frmBtn_container">
+                    <a href="{% url 'createRecord' %}"><button type="button" class="btn">Create New Product</button></a>
+                    <a href="{% url 'Home' %}"><button type="button" class="btn">Log outa Profile</button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

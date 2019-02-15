@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Products{% endblock %}
+
+{% block header %}Welcome to the Products Page!{% endblock %}
+
+{% block content %}
+    <div class="admin_panel">
+        <form method="POST" id="thisForm" action="../details/">
+            <table>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.as_table }}
+            </table>
+            <div class="frmBtn_container">
+                <input type="submit">
+                <div class="frmBtn_container">
+                    <button class="btn"><a href="{../{{ form.pk }}delete/}">Delete</a></button>  <!--Delete goes back one directory-->
+                    <button class="btn"><a href="{% url 'admin' %}">Cancel</a></button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
